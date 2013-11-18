@@ -1,4 +1,4 @@
-# RFduino Serial Plugin for PhoneGap
+# RFduino Plugin for PhoneGap
 
 This plugin enabled Bluetooth communication between a phone and an [RFduino](http://www.rfduino.com/).
 

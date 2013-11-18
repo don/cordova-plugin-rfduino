@@ -13,11 +13,11 @@ Install Cordova
 Create the iOS project
 
     $ cd cordova-plugin-rfduino/examples/temperature
-    $ cordova platform install ios
+    $ cordova platform add ios
 
 Install the rfduino plugin
 
-    $ cordova plugin install com.megster.cordova.rfduino
+    $ cordova plugin add com.megster.cordova.rfduino
     
 Use Xcode to install the application on your iOS device
 
