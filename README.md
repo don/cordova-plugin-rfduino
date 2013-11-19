@@ -5,6 +5,11 @@ This plugin enabled Bluetooth communication between a phone and an [RFduino](htt
 ## Supported Platforms
 
 * iOS
+* Android
+
+Android 4.3 or greater is required. Update the generated cordova project from target 17 to 18 or 19
+
+    $ android update project -p platforms/android -t android-19
 
 ## Limitations
 
