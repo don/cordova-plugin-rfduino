@@ -8,7 +8,7 @@ These instructions assume you have Xcode 5 and [NodeJS](http://nodejs.org) insta
 
 Install Cordova
 
-    $ npm install corodva -g
+    $ npm install cordova -g
     
 Create the iOS project
 
