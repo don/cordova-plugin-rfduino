@@ -1,4 +1,4 @@
-// (c) 2013 Don Coleman
+// (c) 2013 Sara Chipps
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,14 +13,10 @@
 // limitations under the License.
 
 /* global mainPage, deviceList, refreshButton */
-/* global detailPage, tempFahrenheit, tempCelsius, closeButton */
+/* global detailPage, lightButton */
 /* global rfduino, alert */
 'use strict';
 
-var arrayBufferToFloat = function (ab) {
-    var a = new Float32Array(ab);
-    return a[0];
-};
 
 var app = {
     initialize: function() {
@@ -30,7 +26,7 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         refreshButton.addEventListener('touchstart', this.refreshDeviceList, false);
-        closeButton.addEventListener('touchstart', this.disconnect, false);
+        lightButton.addEventListener('touchstart', this.onData);
         deviceList.addEventListener('touchstart', this.connect, false); // assume not scrolling
     },
     onDeviceReady: function() {
@@ -49,7 +45,9 @@ var app = {
 
         listItem.setAttribute('uuid', device.uuid);
         listItem.innerHTML = html;
-        deviceList.appendChild(listItem);
+        deviceList.appendChild(listItem); 
+
+							  
     },
     connect: function(e) {
         var uuid = e.target.getAttribute('uuid'),
@@ -61,12 +59,7 @@ var app = {
         rfduino.connect(uuid, onConnect, app.onError);
     },
     onData: function(data) {
-        console.log(data);
-        var celsius = arrayBufferToFloat(data),
-            fahrenheit = celsius * 1.8 + 32;
-
-        tempCelsius.innerHTML = celsius.toFixed(2);
-        tempFahrenheit.innerHTML = fahrenheit.toFixed(2);
+       console.log(data);
 		rfduino.write("3", app.writeSuccess, app.onError);
 	},
     disconnect: function() {
@@ -77,13 +70,14 @@ var app = {
         detailPage.hidden = true;
     },
     showDetailPage: function() {
-        mainPage.hidden = true;
+							mainPage.hidden = true;
         detailPage.hidden = false;
     },
     onError: function(reason) {
         alert(reason); // real apps should use notification.alert
     },
 	writeSuccess: function(reason){
-		alert("you got it!!" + reason);
+		//alert("you've sent info" + reason);
+		//can use this to debog if you are having trouble sending
 	}	
 };

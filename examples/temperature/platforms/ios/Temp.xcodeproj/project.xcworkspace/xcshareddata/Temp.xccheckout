@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B70867DF-CB6D-4A6F-BDAE-A93AB4D272E1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Temp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F21463E1-4C0E-442B-A430-128AFC9EB0FD</key>
+		<string>https://github.com/don/cordova-plugin-rfduino.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>examples/temperature/platforms/ios/Temp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F21463E1-4C0E-442B-A430-128AFC9EB0FD</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/don/cordova-plugin-rfduino.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F21463E1-4C0E-442B-A430-128AFC9EB0FD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F21463E1-4C0E-442B-A430-128AFC9EB0FD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cordova-plugin-rfduino</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,18 @@
+{
+    "version": "0.0.2",
+    "name": "com.megster.cordova.rfduino",
+    "cordova_name": "RFduino",
+    "description": "Cordova Plugin for RFduino",
+    "license": "Apache 2.0",
+    "keywords": [
+        "bluetooth",
+        " arduino",
+        " rfduino"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.1.0"
+        }
+    ]
+}

@@ -67,8 +67,7 @@ var app = {
 
         tempCelsius.innerHTML = celsius.toFixed(2);
         tempFahrenheit.innerHTML = fahrenheit.toFixed(2);
-		rfduino.write("3", app.writeSuccess, app.onError);
-	},
+    },
     disconnect: function() {
         rfduino.disconnect(app.showMainPage, app.onError);
     },
@@ -82,8 +81,5 @@ var app = {
     },
     onError: function(reason) {
         alert(reason); // real apps should use notification.alert
-    },
-	writeSuccess: function(reason){
-		alert("you got it!!" + reason);
-	}	
+    }
 };
