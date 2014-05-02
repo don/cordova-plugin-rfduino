@@ -22,3 +22,10 @@ Install the rfduino plugin
 Use Xcode to install the application on your iOS device
 
     $ open platforms/ios/Temp.xcodeproj
+
+Works on Android 4.3+ too
+
+    $ cd cordova-plugin-rfduino/examples/temperature
+    $ cordova platform add android
+    $ cordova plugin add com.megster.cordova.rfduino
+    $ cordova run
