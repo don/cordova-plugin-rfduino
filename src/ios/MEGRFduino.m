@@ -347,15 +347,18 @@ CBCharacteristic *disconnect_characteristic;
     
     CBPeripheral *peripheral = nil;
     
-    for (CBPeripheral *p in peripherals) {
-        
-        NSString* other = CFBridgingRelease(CFUUIDCreateString(nil, p.UUID));
-        
-        if ([uuid isEqualToString:other]) {
-            peripheral = p;
-            break;
+    if (uuid != (id)[NSNull null]) {
+        for (CBPeripheral *p in peripherals) {
+            
+            NSString* other = CFBridgingRelease(CFUUIDCreateString(nil, p.UUID));
+            
+            if ([uuid isEqualToString:other]) {
+                peripheral = p;
+                break;
+            }
         }
     }
+    
     return peripheral;
 }
 
