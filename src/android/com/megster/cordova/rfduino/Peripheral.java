@@ -139,6 +139,11 @@ public class Peripheral extends BluetoothGattCallback {
         } else {
             LOG.e(TAG, "Receive Characteristic is missing.");
         }
+
+        // call the success callback for connect
+        PluginResult result = new PluginResult(PluginResult.Status.OK);
+        result.setKeepCallback(true);
+        connectCallback.sendPluginResult(result);
     }
 
     @Override
@@ -148,10 +153,6 @@ public class Peripheral extends BluetoothGattCallback {
 
             connected = true;
             gatt.discoverServices();
-
-            PluginResult result = new PluginResult(PluginResult.Status.OK);
-            result.setKeepCallback(true);
-            connectCallback.sendPluginResult(result);
 
         } else {
 

@@ -42,7 +42,7 @@ CBCharacteristic *disconnect_characteristic;
 - (void)pluginInitialize {
     
     NSLog(@"RFduino Cordova Plugin");
-    NSLog(@"(c)2013 Don Coleman");
+    NSLog(@"(c)2013-2014 Don Coleman");
 
     [super pluginInitialize];
     
@@ -195,7 +195,6 @@ CBCharacteristic *disconnect_characteristic;
 
 }
 
-
 - (void)isConnected:(CDVInvokedUrlCommand*)command {
     
     CDVPluginResult *pluginResult = nil;
@@ -254,12 +253,6 @@ CBCharacteristic *disconnect_characteristic;
     
     [peripheral discoverServices:[NSArray arrayWithObject:service_uuid]];
     
-    CDVPluginResult *pluginResult = nil;
-    if (connectCallbackId) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [pluginResult setKeepCallbackAsBool:TRUE];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:connectCallbackId];
-    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
@@ -267,10 +260,11 @@ CBCharacteristic *disconnect_characteristic;
     NSLog(@"didDisconnectPeripheral");
     
     // TODO send PhoneGap more info from NSError
-    
-    CDVPluginResult *pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Disconnected"];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:connectCallbackId];
+    if (connectCallbackId) {
+        CDVPluginResult *pluginResult = nil;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Disconnected"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:connectCallbackId];
+    }
 
     connectCallbackId = nil;
     
@@ -319,7 +313,15 @@ CBCharacteristic *disconnect_characteristic;
                 disconnect_characteristic = characteristic;
             }
         }
+
+        // call success callback for connect
+        if (connectCallbackId) {
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [pluginResult setKeepCallbackAsBool:TRUE];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:connectCallbackId];
+        }
     }
+
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
