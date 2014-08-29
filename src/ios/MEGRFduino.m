@@ -240,7 +240,7 @@ CBCharacteristic *disconnect_characteristic;
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    NSLog(@"Status of CoreBluetooth central manager changed %d %@",central.state,[self centralManagerStateToString:central.state]);
+    NSLog(@"Status of CoreBluetooth central manager changed %ld %@",central.state,[self centralManagerStateToString:central.state]);
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
