@@ -151,7 +151,8 @@ public class RFduinoPlugin extends CordovaPlugin implements BluetoothAdapter.LeS
         }
 
         if (gatt != null) {
-            gatt.disconnect();
+            gatt.close();
+            gatt = null;
         }
 
         callbackContext.success();
