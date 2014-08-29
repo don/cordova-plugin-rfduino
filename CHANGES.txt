@@ -1,0 +1,7 @@
+= 0.0.3 =
+
+Delay connection success callback until after services and charateristics are discovered. Fixes #10 and #8.
+Fix iOS crash on disconnect #13
+Fix error when connect received null uuid #5
+Fix error callback called multiple times on Android #4
+Fix iOS warnings
