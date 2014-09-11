@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /* global mainPage, deviceList, refreshButton */
-/* global detailPage, buttonState, closeButton */
+/* global detailPage, buttonState, ledButton, closeButton */
 /* global rfduino  */
 /* jshint browser: true , devel: true*/
 'use strict';
@@ -31,6 +31,8 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         refreshButton.addEventListener('touchstart', this.refreshDeviceList, false);
+        ledButton.addEventListener('touchstart', this.sendData, false);
+        ledButton.addEventListener('touchend', this.sendData, false);
         closeButton.addEventListener('touchstart', this.disconnect, false);
         deviceList.addEventListener('touchstart', this.connect, false); // assume not scrolling
     },
@@ -62,13 +64,20 @@ var app = {
         rfduino.connect(uuid, onConnect, app.onError);
     },
     onData: function(data) {
-        console.log(data);        
+        console.log(data);
         var buttonValue = arrayBufferToInt(data);
         if (buttonValue === 1) {
-            buttonState.innerHTML = "On";
+            buttonState.innerHTML = "Button Pressed";
         } else {
-            buttonState.innerHTML = "Off";            
+            buttonState.innerHTML = "Button Released";
         }
+    },
+    sendData: function(event) { // send data to rfduino
+        // 1 to turn led on, 0 to turn led off
+        var data = new Uint8Array(1);
+        data[0] = event.type === 'touchstart' ? 0x1 : 0x0;
+
+        rfduino.write(data.buffer); // ignoring callbacks
     },
     disconnect: function() {
         rfduino.disconnect(app.showMainPage, app.onError);
