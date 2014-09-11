@@ -5,11 +5,7 @@ This plugin enabled Bluetooth communication between a phone and an [RFduino](htt
 ## Supported Platforms
 
 * iOS
-* Android
-
-Android 4.3 or greater is required. Update the generated cordova project from target 17 to 18 or 19
-
-    $ android update project -p platforms/android -t android-19
+* Android 4.3 or greater
 
 ## Limitations
 
@@ -17,7 +13,7 @@ This is an early version of plugin, the API is likely to change.
 
 The current version will only connect to one RFduino at a time.
 
-For this version rfduino.write() only accepts strings and does not check if data exceeds the max size.
+rfduino.write() does not check if data exceeds the max size.
 
 # Installing
 
@@ -165,12 +161,21 @@ Writes data to the currently connected device
 
 ### Description
 
-Function `write` writes data to the connected device.  **Data must be a String.** for this version.
+Function `write` writes data to the connected device.  Data must be an ArrayBuffer for this version.
 
 ### Parameters
 
+- __data__: ArrayBuffer to write to the RFduino
 - __success__: Success callback function that is invoked when the connection is successful. [optional]
 - __failure__: Error callback function, invoked when error occurs. [optional]
+
+### Quick Example
+
+    var data = new ArrayBuffer(3);
+    data[0] = 0xFF;
+    data[1] = 0x00;
+    data[2] = 0x17;
+    rfduino.write(data.buffer, success, failure);
 
 ## isConnected
 
@@ -231,4 +236,3 @@ Apache 2.0
 # Feedback
 
 Try the code. If you find an problem or missing feature, file an issue or create a pull request.
-

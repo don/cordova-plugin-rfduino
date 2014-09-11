@@ -38,6 +38,17 @@ module.exports = {
     },
 
     write: function (data, success, failure) {
+        
+        // data should be an ArrayBuffer, but handle strings for backward compatibility
+        if (typeof(data) === 'string') {
+            var string = data;
+            var array = new Uint8Array(string.length);
+            for (var i=0, len=string.length; i<len; i++) {
+                array[i] = string.charCodeAt(i);
+            }
+            data = array.buffer;
+        }
+        
         cordova.exec(success, failure, 'RFduino', 'write', [data]);
     },
 

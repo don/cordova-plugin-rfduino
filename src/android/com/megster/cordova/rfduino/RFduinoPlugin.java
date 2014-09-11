@@ -98,8 +98,8 @@ public class RFduinoPlugin extends CordovaPlugin implements BluetoothAdapter.LeS
 
         } else if (action.equals(WRITE)) {
 
-            String data = args.getString(0); // TODO should be bytes here
-            write(callbackContext, data.getBytes());
+            byte[] data = args.getArrayBuffer(0);
+            write(callbackContext, data);
 
         } else if (action.equals(IS_ENABLED)) {
 
