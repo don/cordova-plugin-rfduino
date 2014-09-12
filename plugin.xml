@@ -8,7 +8,7 @@
     <name>RFduino</name>
     <description>Cordova Plugin for RFduino</description>
     <license>Apache 2.0</license>
-    <keywords>bluetooth, arduino, rfduino</keywords>
+    <keywords>bluetooth, BLE, arduino, rfduino</keywords>
     <repo>https://github.com/don/cordova-plugin-rfduino.git</repo>
     <issue>https://github.com/don/cordova-plugin-rfduino/issues</issue>
 
