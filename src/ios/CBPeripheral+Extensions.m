@@ -41,7 +41,12 @@ static char ADVERTISEMENT_RSSI_IDENTIFER;
     } else if ([self advertisementRSSI]) {
         [dictionary setObject: [self advertisementRSSI] forKey: @"rssi"];
     }
-    [dictionary setObject: [self advertising] forKey: @"advertising"];
+
+    if ([self advertising]) {
+        [dictionary setObject: [self advertising] forKey: @"advertising"];
+    } else {
+        [dictionary setObject: @"" forKey: @"advertising"];
+    }
     
     return dictionary;
 
