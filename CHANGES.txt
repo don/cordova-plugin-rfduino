@@ -1,3 +1,9 @@
+= 0.1.1 =
+Handle null in rfduino advertising data
+
+= 0.1.0 =
+rfduino.write() takes binary data
+
 = 0.0.3 =
 
 Delay connection success callback until after services and charateristics are discovered. Fixes #10 and #8.
