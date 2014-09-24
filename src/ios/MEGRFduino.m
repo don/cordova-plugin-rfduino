@@ -161,13 +161,9 @@ CBCharacteristic *disconnect_characteristic;
 - (void)discover:(CDVInvokedUrlCommand*)command {
 
     CDVPluginResult *pluginResult = nil;
-    // TODO don't need var and with timer, pick one
     discoverPeripherialCallbackId = [command.callbackId copy];
-
-    // this should be optional
     NSNumber *timeout = [command.arguments objectAtIndex:0];
 
-    // TODO do I need to empty the existing?
     [manager scanForPeripheralsWithServices:[NSArray arrayWithObject:service_uuid] options:nil];
 
     [NSTimer scheduledTimerWithTimeInterval:[timeout floatValue]
@@ -211,11 +207,12 @@ CBCharacteristic *disconnect_characteristic;
 
     [manager stopScan];
 
-
-    CDVPluginResult *pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:discoverPeripherialCallbackId];
-    discoverPeripherialCallbackId = nil;
+    if (discoverPeripherialCallbackId) {
+        CDVPluginResult *pluginResult = nil;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:discoverPeripherialCallbackId];
+        discoverPeripherialCallbackId = nil;
+    }
 }
 
 #pragma mark - CBCentralManagerDelegate

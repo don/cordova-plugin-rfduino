@@ -1,3 +1,6 @@
+= 0.1.2 =
+Fix #19 Scanning 2x crashes app
+
 = 0.1.1 =
 Handle null in rfduino advertising data
 
