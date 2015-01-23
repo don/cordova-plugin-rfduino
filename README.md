@@ -9,9 +9,7 @@ This plugin enabled Bluetooth communication between a phone and an [RFduino](htt
 
 ## Limitations
 
-This is an early version of plugin, the API is likely to change.
-
-The current version will only connect to one RFduino at a time.
+The can only connect to one RFduino at a time. Use the [BLE plugin](https://github.com/don/cordova-plugin-ble-central) to connect to multiple devices at the same time.
 
 rfduino.write() does not check if data exceeds the max size.
 
