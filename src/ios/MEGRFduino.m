@@ -42,7 +42,7 @@ CBCharacteristic *disconnect_characteristic;
 - (void)pluginInitialize {
 
     NSLog(@"RFduino Cordova Plugin");
-    NSLog(@"(c)2013-2014 Don Coleman");
+    NSLog(@"(c)2013-2015 Don Coleman");
 
     [super pluginInitialize];
 
@@ -64,7 +64,6 @@ CBCharacteristic *disconnect_characteristic;
 - (void)connect:(CDVInvokedUrlCommand *)command {
 
     NSLog(@"connect");
-    CDVPluginResult *pluginResult = nil;
     NSString *uuid = [command.arguments objectAtIndex:0];
 
     CBPeripheral *peripheral = [self findPeripheralByUUID:uuid];
@@ -72,16 +71,13 @@ CBCharacteristic *disconnect_characteristic;
     if (peripheral) {
         NSLog(@"Connecting to peripheral with UUID : %@", uuid);
 
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-        [pluginResult setKeepCallbackAsBool:TRUE];
         connectCallbackId = [command.callbackId copy];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
         [manager connectPeripheral:peripheral options:nil];
 
     } else {
         NSString *error = [NSString stringWithFormat:@"Could not find peripheral %@.", uuid];
         NSLog(@"%@", error);
+        CDVPluginResult *pluginResult = nil;
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
@@ -160,7 +156,6 @@ CBCharacteristic *disconnect_characteristic;
 
 - (void)discover:(CDVInvokedUrlCommand*)command {
 
-    CDVPluginResult *pluginResult = nil;
     discoverPeripherialCallbackId = [command.callbackId copy];
     NSNumber *timeout = [command.arguments objectAtIndex:0];
 
@@ -172,19 +167,11 @@ CBCharacteristic *disconnect_characteristic;
                                    userInfo:[command.callbackId copy]
                                     repeats:NO];
 
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-    [pluginResult setKeepCallbackAsBool:TRUE];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)onData:(CDVInvokedUrlCommand*)command {
 
-    CDVPluginResult *pluginResult = nil;
     onDataCallbackId = [command.callbackId copy];
-
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-    [pluginResult setKeepCallbackAsBool:TRUE];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
 }
 
@@ -208,9 +195,11 @@ CBCharacteristic *disconnect_characteristic;
     [manager stopScan];
 
     if (discoverPeripherialCallbackId) {
-        CDVPluginResult *pluginResult = nil;
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:discoverPeripherialCallbackId];
+
+        // NO_RESULT breaks with Cordova 4.1 https://issues.apache.org/jira/browse/CB-8063
+        // CDVPluginResult *pluginResult = nil;
+        // pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
+        // [self.commandDelegate sendPluginResult:pluginResult callbackId:discoverPeripherialCallbackId];
         discoverPeripherialCallbackId = nil;
     }
 }
