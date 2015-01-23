@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin
-    xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.megster.cordova.rfduino"
     version="0.1.2">
@@ -49,7 +49,7 @@
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.BLUETOOTH"/>
             <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-            <uses-sdk android:minSdkVersion="18" android:targetSdkVersion="19" />            
+            <uses-sdk android:minSdkVersion="18" android:targetSdkVersion="19" />
         </config-file>
 
         <source-file src="src/android/com/megster/cordova/rfduino/RFduinoPlugin.java"
