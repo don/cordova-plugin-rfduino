@@ -96,7 +96,7 @@ CBCharacteristic *disconnect_characteristic;
         NSData *data = [NSData data];
         [activePeripheral writeValue:data forCharacteristic:disconnect_characteristic type:CBCharacteristicWriteWithoutResponse];
 
-        if (activePeripheral.isConnected) {
+        if (activePeripheral.state == CBPeripheralStateConnected) {
             [manager cancelPeripheralConnection:activePeripheral];
         }
     }
@@ -179,7 +179,7 @@ CBCharacteristic *disconnect_characteristic;
 
     CDVPluginResult *pluginResult = nil;
 
-    if ([activePeripheral isConnected]) {
+    if (activePeripheral.state == CBPeripheralStateConnected) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Not connected"];
@@ -333,7 +333,7 @@ CBCharacteristic *disconnect_characteristic;
     if (uuid != (id)[NSNull null]) {
         for (CBPeripheral *p in peripherals) {
 
-            NSString* other = CFBridgingRelease(CFUUIDCreateString(nil, p.UUID));
+            NSString* other = p.identifier.UUIDString;
 
             if ([uuid isEqualToString:other]) {
                 peripheral = p;
