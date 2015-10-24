@@ -17,7 +17,7 @@ rfduino.write() does not check if data exceeds the max size.
 
 Install with Cordova cli
 
-    $ cordova plugin add com.megster.cordova.rfduino
+    $ cordova plugin add cordova-plugin-rfduino
 
 # API
 

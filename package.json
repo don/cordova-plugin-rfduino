@@ -1,0 +1,37 @@
+{
+  "name": "cordova-plugin-rfduino",
+  "version": "0.1.4",
+  "description": "Cordova Plugin for RFduino",
+  "cordova": {
+    "id": "cordova-plugin-rfduino",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/don/cordova-plugin-rfduino.git"
+  },
+  "keywords": [
+    "bluetooth",
+    "ble",
+    "arduino",
+    "rfduino",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.1.0"
+    }
+  ],
+  "author": "Don Coleman <don.coleman@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/don/cordova-plugin-rfduino/issues"
+  },
+  "homepage": "https://github.com/don/cordova-plugin-rfduino#readme"
+}
